@@ -8,6 +8,12 @@
             {{ $post->title  }}
       </h2>
 
+      <div class="text-secondary">
+            <a href="/category/{{ $post->category->slug }}"> {{ $post->category->name }} </a> &middot; {{ $post->created_at->format("d F, Y") }}
+      </div>
+
+      <hr>
+
       <p>
             {{ $post->body}}
       </p>

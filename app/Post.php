@@ -21,4 +21,10 @@ class Post extends Model
     {
         return $this->orderBy('id','asc')->get();
     }
+
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

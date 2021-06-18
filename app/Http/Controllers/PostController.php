@@ -19,7 +19,7 @@ class PostController extends Controller
         $posts = Post::paginate(2);
         return view('post.index',compact('posts'));
         */
-        return view('post.index',[
+        return view('post.index', [
             'posts' => Post::latest()->paginate(6),
         ]);
     }
@@ -31,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create',['post' => new Post()]);
+        return view('post.create', ['post' => new Post()]);
     }
 
     /**
@@ -69,7 +69,7 @@ class PostController extends Controller
 
 
         // flash message
-        session()->flash('success','The post was created');
+        session()->flash('success', 'The post was created');
 
         // to redirect after post to index
         return redirect()->to('posts');
@@ -116,7 +116,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit',compact('post'));
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -133,11 +133,10 @@ class PostController extends Controller
         $post->update($attr);
 
         // flash message
-        session()->flash('success','The post was edited');
+        session()->flash('success', 'The post was edited');
 
         // to redirect after post to index
         return redirect()->to('posts');
-
     }
 
     /**

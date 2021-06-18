@@ -42,6 +42,10 @@ Route::get('posts/{post:slug}', 'PostController@show');
 // ------------------------------------------------------------------------
 
 
+
+Route::get('category/{category:slug}', 'CategoryController@show');
+
+
 Route::view('contact','contact');
 Route::view('about','about');
 Route::view('login','login');
