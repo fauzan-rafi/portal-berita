@@ -12,7 +12,6 @@
                               <form action="/posts/store" method="post">
                                     @csrf
                                     @include('post.partial.form',['submit' => 'Insert'])
-
                               </form>
                         </div>
                   </div>

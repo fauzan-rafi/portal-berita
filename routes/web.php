@@ -44,6 +44,7 @@ Route::get('posts/{post:slug}', 'PostController@show');
 
 
 Route::get('category/{category:slug}', 'CategoryController@show');
+Route::get('tags/{tag:slug}', 'TagController@show');
 
 
 Route::view('contact','contact');

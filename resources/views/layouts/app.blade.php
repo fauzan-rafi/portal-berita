@@ -10,6 +10,7 @@
       <title>{{ $title ?? ''}}</title>
       <!-- memanggil boostrap dari folder public hanya dengan -->
       <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+      <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -31,8 +32,19 @@
       </div>
 
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      
+
+
+      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+      <script>
+            $(document).ready(function() {
+                  $('.select2').select2({
+                        placeholder: "Choose tags!"
+                  });
+            });
+      </script>
 </body>
 
 </html>

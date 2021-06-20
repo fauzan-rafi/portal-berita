@@ -9,7 +9,11 @@
       </h2>
 
       <div class="text-secondary">
-            <a href="/category/{{ $post->category->slug }}"> {{ $post->category->name }} </a> &middot; {{ $post->created_at->format("d F, Y") }}
+            <a href="/category/{{ $post->category->slug }}"> {{ $post->category->name }} </a> &middot; {{ $post->created_at->format("d F, Y") }} &middot;
+
+            @foreach($post->tags as $tag)
+            <a href="/tags/{{ $tag->slug }}"> {{ $tag->name }} </a>
+            @endforeach
       </div>
 
       <hr>

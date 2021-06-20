@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use App\Http\Requests\PostRequest;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -31,7 +33,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create', ['post' => new Post()]);
+        return view('post.create', [
+            'post' => new Post(),
+            'categories' => Category::get(),
+            'tags' => Tag::get()
+        ]);
     }
 
     /**
@@ -60,13 +66,20 @@ class PostController extends Controller
         ]);
         */
 
+        
         $attr = $request->all();
 
-        // veri simple and cool store data
-        // $post = $request->all();
+        // dd($attr);
+        // very simple and cool store data
+        // membuat slug 
         $attr['slug'] = \Str::slug(request('title'));
-        Post::create($attr);
+        // memasukan category dalam table
+        $attr['category_id'] = request('category');
 
+        // save perubahan data pada table post
+        $post = Post::create($attr);
+        // assign tags yang didapat kedalam table posts tags
+        $post->tags()->attach(request('tags'));
 
         // flash message
         session()->flash('success', 'The post was created');
@@ -116,7 +129,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit', compact('post'));
+        return view('post.edit', [
+            'post' => $post,
+            'categories' => Category::get(),
+            'tags' => Tag::get()
+        ]);
     }
 
     /**
@@ -130,8 +147,11 @@ class PostController extends Controller
     {
         $attr = $request->all();
 
+        $attr['category_id'] = request('category');
+
         $post->update($attr);
 
+        $post->tags()->sync(request('tags'));
         // flash message
         session()->flash('success', 'The post was edited');
 
