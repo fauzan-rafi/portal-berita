@@ -7,25 +7,23 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Create a new controller instance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    // public function __invoke(Request $request)
-    // {
-    //     //menerima data dari request get
-    //     $nama = $request->name;
-    //     // compact('nama') sama seperti array ['nama' => $nama]
-    //     return view('home',compact('nama'));
-    // }
-    
-    // cara lain yaitu tanpa class request yaitu menggunakan function
-    public function __invoke()
+    public function __construct()
     {
-        //menerima data dari request get
-        $nama = request('name');
-        // compact('nama') sama seperti array ['nama' => $nama]
-        return view('home',compact('nama'));
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        // return view('home');
+        return redirect()->route('posts.index');
     }
 }
